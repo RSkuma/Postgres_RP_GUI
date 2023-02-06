@@ -1,0 +1,24 @@
+File is used to record commands and instructions needed to run the docker-compose container
+
+
+Start in background, then shutdown
+	sudo docker-compose up &
+	fg (bring to foreground)
+
+
+get into postgres container
+	sudo docker exec -it 'container_id' bash
+
+run psql in postgres container
+
+	psql -U 'username'
+
+
+
+
+CREATE DATABASE testing_db_grafana;
+(make sure to switch to the new database)
+
+CREATE TABLE clients (id SERIAL PRIMARY KEY, tc_reading INT, pt_reading INT, time TIMESTAMP);
+
+INSERT INTO clients (tc_reading, pt_reading, time) VALUES (100.0, 300, '2023-01-01 12:50:00');

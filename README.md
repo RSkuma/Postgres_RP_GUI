@@ -4,7 +4,7 @@ Server based GUI for the UCI Rocket Project
 StartupCommands:
 
 install docker and docker compose
-[pull repo]
+pull repo
 >CD Prometheus_GUI/docker-compose
 >docker compose build
 >docker compose up

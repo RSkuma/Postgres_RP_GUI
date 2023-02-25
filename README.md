@@ -3,12 +3,12 @@ Server based GUI for the UCI Rocket Project
 
 StartupCommands:
 
-install docker and docker compose
-pull repo
->CD Prometheus_GUI/docker-compose
->docker compose build
->docker compose up
->docker compose down(to shut down)
+1. install docker and docker compose
+2. pull repo
+3. cd Prometheus_GUI/docker-compose
+4. docker compose build
+5. docker compose up
+6. docker compose down(to shut down)
 
 Docker Commands:
 

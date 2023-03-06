@@ -24,3 +24,6 @@ user: postgres
 password: postgres
 TLS/SSL Mode: disable
 NOTE: table must have a timestamp value to be displayed
+
+TO APPLY CHANGES IN /sql/init.sql, volumes need to be removed:  
+docker-compose down --volumes

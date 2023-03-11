@@ -36,7 +36,37 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -56,25 +86,24 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 6,
+        "h": 8,
+        "w": 12,
         "x": 0,
         "y": 0
       },
-      "id": 12,
+      "id": 22,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -83,7 +112,7 @@
           },
           "editorMode": "builder",
           "format": "table",
-          "rawSql": "SELECT \"time\", tc4 FROM tc LIMIT 50 ",
+          "rawSql": "SELECT \"time\", pt1 AS \"LNG PT\", pt2 AS \"LOX PT\", pt3 AS \"COPV PT\", pt4 AS \"LNG INJ PT\" FROM pt LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -97,9 +126,40 @@
                 "type": "function"
               },
               {
+                "alias": "\"LNG PT\"",
                 "parameters": [
                   {
-                    "name": "tc4",
+                    "name": "pt1",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"LOX PT\"",
+                "parameters": [
+                  {
+                    "name": "pt2",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"COPV PT\"",
+                "parameters": [
+                  {
+                    "name": "pt3",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "alias": "\"LNG INJ PT\"",
+                "parameters": [
+                  {
+                    "name": "pt4",
                     "type": "functionParameter"
                   }
                 ],
@@ -116,105 +176,11 @@
             ],
             "limit": 50
           },
-          "table": "tc"
+          "table": "pt"
         }
       ],
-      "title": "MVAS TC",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "mk0oeb14k"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 6,
-        "y": 0
-      },
-      "id": 10,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.3.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "mk0oeb14k"
-          },
-          "editorMode": "builder",
-          "format": "table",
-          "rawSql": "SELECT \"time\", tc3 FROM tc LIMIT 50 ",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [
-                  {
-                    "name": "\"time\"",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              },
-              {
-                "parameters": [
-                  {
-                    "name": "tc3",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "tc"
-        }
-      ],
-      "title": "COPV TC",
-      "type": "gauge"
+      "title": "PT",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -434,194 +400,6 @@
       "gridPos": {
         "h": 5,
         "w": 6,
-        "x": 0,
-        "y": 4
-      },
-      "id": 16,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.3.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "mk0oeb14k"
-          },
-          "editorMode": "builder",
-          "format": "table",
-          "rawSql": "SELECT \"time\", pt2 FROM pt LIMIT 50 ",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [
-                  {
-                    "name": "\"time\"",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              },
-              {
-                "parameters": [
-                  {
-                    "name": "pt2",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "pt"
-        }
-      ],
-      "title": "LOX PT",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "mk0oeb14k"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 6,
-        "x": 6,
-        "y": 4
-      },
-      "id": 14,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.3.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "mk0oeb14k"
-          },
-          "editorMode": "builder",
-          "format": "table",
-          "rawSql": "SELECT \"time\", pt1 FROM pt LIMIT 50 ",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [
-                  {
-                    "name": "\"time\"",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              },
-              {
-                "parameters": [
-                  {
-                    "name": "pt1",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "pt"
-        }
-      ],
-      "title": "LNG PT",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "mk0oeb14k"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 6,
         "x": 12,
         "y": 4
       },
@@ -785,20 +563,48 @@
         "type": "postgres",
         "uid": "mk0oeb14k"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 4,
+        "w": 6,
         "x": 0,
-        "y": 9
+        "y": 8
       },
-      "id": 2,
+      "id": 12,
       "options": {
-        "gap": 10,
-        "gapBetweenEmpMarks": 3,
-        "seriesCountSize": "md",
-        "showSeriesCount": true,
-        "text": "There can be text here?"
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -807,14 +613,23 @@
           },
           "editorMode": "builder",
           "format": "table",
-          "rawSql": "SELECT angle FROM tilt LIMIT 50 ",
+          "rawSql": "SELECT \"time\", tc4 FROM tc LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
               {
                 "parameters": [
                   {
-                    "name": "angle",
+                    "name": "\"time\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "tc4",
                     "type": "functionParameter"
                   }
                 ],
@@ -831,11 +646,105 @@
             ],
             "limit": 50
           },
-          "table": "tilt"
+          "table": "tc"
         }
       ],
-      "title": "Virtual Horizon",
-      "type": "ucirp-virthorizon-panel"
+      "title": "MVAS TC",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "mk0oeb14k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 8
+      },
+      "id": 10,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "mk0oeb14k"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT \"time\", tc3 FROM tc LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "\"time\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "tc3",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "tc"
+        }
+      ],
+      "title": "COPV TC",
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -990,6 +899,251 @@
       ],
       "title": "Panel Title",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "mk0oeb14k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 12
+      },
+      "id": 16,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "mk0oeb14k"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT \"time\", pt2 FROM pt LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "\"time\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "pt2",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "pt"
+        }
+      ],
+      "title": "LOX PT",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "mk0oeb14k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 12
+      },
+      "id": 14,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "mk0oeb14k"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT \"time\", pt1 FROM pt LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "\"time\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "pt1",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "pt"
+        }
+      ],
+      "title": "LNG PT",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "mk0oeb14k"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "id": 2,
+      "options": {
+        "gap": 10,
+        "gapBetweenEmpMarks": 3,
+        "seriesCountSize": "md",
+        "showSeriesCount": true,
+        "text": "There can be text here?"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "mk0oeb14k"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT angle FROM tilt LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "angle",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "tilt"
+        }
+      ],
+      "title": "Virtual Horizon",
+      "type": "ucirp-virthorizon-panel"
     }
   ],
   "refresh": false,
@@ -1000,13 +1154,13 @@
     "list": []
   },
   "time": {
-    "from": "2023-03-11T01:31:10.102Z",
-    "to": "2023-03-11T01:31:33.008Z"
+    "from": "now-6h",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Virt Horizon testing",
   "uid": "ewH9zaJVz",
-  "version": 12,
+  "version": 14,
   "weekStart": ""
 }

@@ -18,3 +18,13 @@ pt3 FLOAT, -- COPV PT
 pt4 FLOAT  -- LNG INJ
 );
 
+CREATE TABLE IF NOT EXISTS solenoids (
+	id SERIAL NOT NULL PRIMARY KEY,
+	time timestamp NOT NULL DEFAULT now(),
+	he smallint,
+	lng smallint,
+	lox smallint,
+	pv1 smallint,
+	pv2 smallint,
+	mvas smallint
+);

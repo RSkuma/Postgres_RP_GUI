@@ -6,6 +6,7 @@ import time
 import threading
 
 
+# TODO: Fix this code from the Serial_ECU/landing-orion branch.
 class UdpReader:
     def __init__(self):
         self.address = ("192.168.0.6", 8888)
@@ -51,19 +52,6 @@ class UdpReader:
             print("[getdata] ", e)
             return None
             pass
-
-    # def sendData(self, dataStr):
-    #     try:
-    #         data = dataStr.encode('utf-8')
-    #         self.sock.sendto(data, self.address)
-
-    #         rec_data, addr = self.sock.recvfrom(2048)  # Causes buffering issue
-    #         print("SendData", rec_data)
-    #         return bool(rec_data)
-    #     except:
-    #         print("sd failed")
-    #         return False
-    #         pass
 
     def conv(self, str):
         return str[2 : len(str) - 5]

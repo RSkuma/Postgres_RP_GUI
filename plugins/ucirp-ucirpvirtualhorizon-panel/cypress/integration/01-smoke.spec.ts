@@ -8,3 +8,4 @@ e2e.scenario({
     e2e().contains('Welcome to Grafana').should('be.visible');
   },
 });
+

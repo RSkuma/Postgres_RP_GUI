@@ -55,4 +55,24 @@ CREATE TABLE IF NOT EXISTS bmp (
 	altitude numeric,
 	pressure numeric
 );
+CREATE TABLE IF NOT EXISTS normally_open(
+	state smallint,
+	flow_state smallint
+);
+
+INSERT INTO normally_open (state, flow_state) VALUES (0, 1);
+INSERT INTO normally_open (state, flow_state) VALUES (1, 0);
+
+CREATE OR REPLACE VIEW  solenoids_flow_states AS
+	SELECT id, "time", 
+	he, 
+	lng_f.flow_state as lng,
+	lox_f.flow_state as lox,
+	pv1,
+	pv2_f.flow_state as pv2,
+	mvas
+	FROM solenoids 
+	  JOIN normally_open AS lng_f ON lng = lng_f.state 
+	  JOIN normally_open  AS lox_f ON lox = lox_f.state
+	  JOIN normally_open AS pv2_f ON pv2 = pv2_f.state;
 

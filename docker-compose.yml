@@ -12,6 +12,7 @@ services:
             - grafana-data:/var/lib/grafana
             - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/main.yaml
             - ./dashboards:/var/lib/grafana/dashboards
+            - ./grafana/pg_datasource.yml:/etc/grafana/provisioning/datasources/pg_datasource.yml
 
   postgres:
     image: postgres:latest

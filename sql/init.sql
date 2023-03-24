@@ -28,3 +28,31 @@ CREATE TABLE IF NOT EXISTS solenoids (
 	pv2 smallint,
 	mvas smallint
 );
+
+CREATE TABLE IF NOT EXISTS location (
+	time timestamp NOT NULL DEFAULT now(),
+	lat numeric,
+	lon numeric
+);
+
+CREATE TABLE IF NOT EXISTS gyro (
+	time timestamp NOT NULL DEFAULT now(),
+	x numeric,
+	y numeric,
+	z numeric
+);
+
+CREATE TABLE IF NOT EXISTS acc (
+	time timestamp NOT NULL DEFAULT now(),
+	x numeric,
+	y numeric,
+	z numeric
+);
+
+CREATE TABLE IF NOT EXISTS bmp (
+	time timestamp NOT NULL DEFAULT now(),
+	temp numeric,
+	altitude numeric,
+	pressure numeric
+);
+

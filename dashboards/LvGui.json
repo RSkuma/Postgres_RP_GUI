@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_POSTGRESQL",
-      "label": "PostgreSQL",
+      "name": "DS_POSTGRES",
+      "label": "Postgres",
       "description": "",
       "type": "datasource",
       "pluginId": "postgres",
@@ -34,6 +34,12 @@
       "id": "postgres",
       "name": "PostgreSQL",
       "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
     },
     {
       "type": "panel",
@@ -74,7 +80,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -120,7 +126,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 24,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -149,12 +155,12 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT \"time\", he, lox, lng, pv1, pv2, mvas FROM soleniods ORDER BY \"time\" DESC LIMIT 1",
+          "rawSql": "SELECT \"time\", he, lox, lng, pv1, pv2, mvas FROM solenoids ORDER BY \"time\" DESC LIMIT 1",
           "refId": "A",
           "sql": {
             "columns": [
@@ -241,7 +247,87 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 26,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "${DS_POSTGRES}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"time\", he, lng, lox, pv1, pv2, mvas FROM solenoids_flow_states ORDER BY \"time\" DESC LIMIT 1;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Solenoids Flow States",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -296,7 +382,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 11,
         "w": 12,
         "x": 0,
         "y": 4
@@ -318,11 +404,11 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
-          "rawSql": "SELECT \"time\", pt1 AS \"LNG PT\", pt2 AS \"LOX PT\", pt3 AS \"COPV PT\", pt4 AS \"LNG INJ PT\" FROM pt LIMIT 50 ",
+          "rawSql": "SELECT \"time\", pt1 AS \"LNG PT\", pt2 AS \"LOX PT\", pt3 AS \"COPV PT\", pt4 AS \"LNG INJ PT\" FROM pt ORDER BY \"time\" DESC LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -384,7 +470,17 @@
                 "type": "groupBy"
               }
             ],
-            "limit": 50
+            "limit": 50,
+            "orderBy": {
+              "property": {
+                "name": [
+                  "\"time\""
+                ],
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "DESC"
           },
           "table": "pt"
         }
@@ -395,7 +491,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -450,7 +546,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 11,
         "w": 12,
         "x": 12,
         "y": 4
@@ -472,7 +568,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
@@ -549,7 +645,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -577,7 +673,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 12
+        "y": 15
       },
       "id": 18,
       "options": {
@@ -597,7 +693,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
@@ -643,7 +739,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -671,7 +767,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 12
+        "y": 15
       },
       "id": 14,
       "options": {
@@ -691,7 +787,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
@@ -737,7 +833,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -765,101 +861,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 12
-      },
-      "id": 20,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "9.3.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
-          },
-          "editorMode": "builder",
-          "format": "table",
-          "rawSql": "SELECT \"time\", pt4 FROM pt LIMIT 50 ",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [
-                  {
-                    "name": "\"time\"",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              },
-              {
-                "parameters": [
-                  {
-                    "name": "pt4",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "pt"
-        }
-      ],
-      "title": "LNG INJ PT",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 9,
-        "y": 12
+        "y": 15
       },
       "id": 16,
       "options": {
@@ -879,7 +881,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
@@ -925,7 +927,101 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 15
+      },
+      "id": 20,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "${DS_POSTGRES}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT \"time\", pt4 FROM pt LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "\"time\"",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "pt4",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "pt"
+        }
+      ],
+      "title": "LNG INJ PT",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -953,7 +1049,7 @@
         "h": 4,
         "w": 3,
         "x": 12,
-        "y": 12
+        "y": 15
       },
       "id": 10,
       "options": {
@@ -973,7 +1069,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
@@ -1019,7 +1115,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1047,7 +1143,7 @@
         "h": 4,
         "w": 3,
         "x": 15,
-        "y": 12
+        "y": 15
       },
       "id": 8,
       "options": {
@@ -1067,7 +1163,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
@@ -1113,7 +1209,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1141,7 +1237,7 @@
         "h": 4,
         "w": 3,
         "x": 18,
-        "y": 12
+        "y": 15
       },
       "id": 6,
       "options": {
@@ -1161,7 +1257,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
@@ -1207,7 +1303,7 @@
     {
       "datasource": {
         "type": "postgres",
-        "uid": "${DS_POSTGRESQL}"
+        "uid": "${DS_POSTGRES}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1235,7 +1331,7 @@
         "h": 4,
         "w": 3,
         "x": 21,
-        "y": 12
+        "y": 15
       },
       "id": 12,
       "options": {
@@ -1255,7 +1351,7 @@
         {
           "datasource": {
             "type": "postgres",
-            "uid": "${DS_POSTGRESQL}"
+            "uid": "${DS_POSTGRES}"
           },
           "editorMode": "builder",
           "format": "table",
@@ -1307,13 +1403,13 @@
     "list": []
   },
   "time": {
-    "from": "2023-03-11T01:31:10.102Z",
-    "to": "2023-03-11T19:12:23.891Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Virt Horizon testing",
-  "uid": "ewH9zaJVz",
-  "version": 23,
+  "title": "LV GUI",
+  "uid": "ewH9zaJVl",
+  "version": 7,
   "weekStart": ""
 }

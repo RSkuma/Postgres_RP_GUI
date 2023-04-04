@@ -1,5 +1,3 @@
-CREATE DATABASE development;
-\connect development;
 CREATE TABLE IF NOT EXISTS tc (
 id SERIAL NOT NULL PRIMARY KEY,
 time timestamp NOT NULL DEFAULT now(),

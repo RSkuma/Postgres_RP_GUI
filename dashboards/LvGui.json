@@ -572,7 +572,7 @@
           },
           "editorMode": "builder",
           "format": "table",
-          "rawSql": "SELECT \"time\", tc1 AS \"LNG TC\", tc2 AS \"LOX TC\", tc3 AS \"COPV TC\", tc4 AS \"MVAS TC\" FROM tc LIMIT 50 ",
+          "rawSql": "SELECT \"time\", tc1 AS \"LNG TC\", tc2 AS \"LOX TC\", tc3 AS \"COPV TC\", tc4 AS \"MVAS TC\" FROM tc ORDER BY \"time\" DESC LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -697,7 +697,7 @@
           },
           "editorMode": "builder",
           "format": "table",
-          "rawSql": "SELECT \"time\", pt3 FROM pt LIMIT 50 ",
+          "rawSql": "SELECT \"time\", pt3 FROM pt ORDER BY \"time\" DESC LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -791,7 +791,7 @@
           },
           "editorMode": "builder",
           "format": "table",
-          "rawSql": "SELECT \"time\", pt1 FROM pt LIMIT 50 ",
+          "rawSql": "SELECT \"time\", pt1 FROM pt ORDER BY \"time\" DESC LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1355,7 +1355,7 @@
           },
           "editorMode": "builder",
           "format": "table",
-          "rawSql": "SELECT \"time\", tc4 FROM tc LIMIT 50 ",
+          "rawSql": "SELECT \"time\", tc4 FROM tc ORDER BY \"time\" DESC LIMIT 50 ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1395,7 +1395,7 @@
       "type": "gauge"
     }
   ],
-  "refresh": false,
+  "refresh": true,
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -1406,7 +1406,7 @@
     "from": "now-5m",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {"refresh_intervals": ["50ms","1s","5s", "10s","1m", "1h","1d"]},
   "timezone": "",
   "title": "LV GUI",
   "uid": "ewH9zaJVl",

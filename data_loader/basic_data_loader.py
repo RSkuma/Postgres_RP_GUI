@@ -5,7 +5,7 @@ import udpRead
 while True:
     print("----------------")
     # Attempt to get data from Arduino
-    udpReader = udpRead.UdpReader()
+    udpReader = udpRead.UdpReader('ecu')
     try:
         data = udpReader.getData(f"tc;sAll;")
 

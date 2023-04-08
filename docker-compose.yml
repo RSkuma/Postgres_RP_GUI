@@ -14,9 +14,11 @@ services:
             - ./dashboards:/var/lib/grafana/dashboards
             - ./grafana/pg_datasource.yml:/etc/grafana/provisioning/datasources/pg_datasource.yml
             - ./grafana/custom.ini:/etc/grafana/grafana.ini
+    depends_on:
+            - postgres
 
   postgres:
-    image: postgres:14.1-alpine
+    image: postgres:15.2-alpine
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -26,3 +28,13 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+  loader:
+          image: cb46df8ba59b58ea94974168b05 
+          extra_hosts:
+                  - "ecu:192.168.0.6"
+          depends_on:
+                  - postgres
+                  - grafana
+          volumes:
+                  - ./data_loader:/root
+

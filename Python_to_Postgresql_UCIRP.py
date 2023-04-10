@@ -4,7 +4,7 @@ import time
 
 #Change to fit UCI Rocket's names
 hostname = 'localhost'
-database = 'development'
+database = 'postgres'
 username = 'postgres'
 pwd = 'postgres'
 port_id = 5432

@@ -29,7 +29,11 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
   loader:
-          image: cb46df8ba59b58ea94974168b05 
+          image: UCI-Rocket-Project/ECU-Loader
+          build: 
+            context: ./data_loader
+            cache_from: 
+              - debian:latest
           extra_hosts:
                   - "ecu:192.168.0.6"
           depends_on:

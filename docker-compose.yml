@@ -29,7 +29,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
   loader:
-          image: UCI-Rocket-Project/ECU-Loader
+          image: ucirp/ecu-loader
           build: 
             context: ./data_loader
             cache_from: 

@@ -36,6 +36,7 @@ services:
               - debian:latest
           extra_hosts:
                   - "ecu:192.168.0.6"
+                  - "gse_ecu:192.168.0.5"
           depends_on:
                   - postgres
                   - grafana

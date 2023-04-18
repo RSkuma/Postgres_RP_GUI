@@ -2,13 +2,8 @@ import click
 import psycopg2 as pg
 import threading
 from udpRead import UdpReader
+import threading
 
-# @click.command()
-# @click.option('--dbname', default='postgres', help="Name of database")
-# @click.option('--password', default='postgres', prompt=True, hide_input=True)
-# @click.option('--user', default='postgres', help="Postgres Username")
-# @click.option('--ecu-ip', default='192.168.0.6', help="IP Address of the ECU")
-# @click.option('--db-host', default='localhost', help="Host of database. Can be IP or Domain")
 def start_loading(dbname, password, user, ecu_ip, db_host):
     udpReader = UdpReader(ecu_ip)
     conn = pg.connect(f'dbname={dbname}  user={user} password={password} host={db_host} port=5432')
@@ -39,5 +34,10 @@ def start_loading(dbname, password, user, ecu_ip, db_host):
         conn.commit()
 
 if __name__ == '__main__':
-        start_loading('postgres', 'postgres', 'postgres', 'ecu', 'postgres')
+    t1 = Thread(target = start_loading, args = ('postgres', 'postgres', 'postgres', 'ecu', 'postgres'))
+    t1.start()
+    t2 = Thread(target = start_loading, args = ('postgres', 'postgres', 'postgres', 'gse_ecu', 'postgres'))
+    t2.start()
+    t1.join()
+    t2.join()
 

@@ -39,5 +39,5 @@ def start_loading(dbname, password, user, ecu_ip, db_host):
         conn.commit()
 
 if __name__ == '__main__':
-        start_loading('postgres', 'postgres', 'postgres', 'ecu', 'postgres')
+        start_loading('postgres', 'postgres', 'postgres', '192.168.0.6', 'postgres')
 

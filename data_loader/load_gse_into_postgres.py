@@ -32,12 +32,10 @@ def start_loading(dbname, password, user, ecu_ip, db_host):
         except Exception as e:
             click.secho(f"fucked {e}", fg='red')
         with conn.cursor() as cur:
-            cur.execute("INSERT INTO solenoids (he, lng, lox, pv1, pv2, mvas) VALUES (%s, %s, %s, %s, %s, %s);", 
-                    (sAll[0], sAll[1], sAll[2], sAll[3], sAll[4], sAll[5]))
-            cur.execute("INSERT INTO pt (pt1, pt2, pt3, pt4) VALUES (%s, %s, %s, %s);", (pt[3], pt[4], extra, pt[0]))
-            cur.execute("INSERT INTO tc (tc1, tc2, tc3, tc4) VALUES (%s, %s, %s, %s);", (tc[0], tc[1], tc[2], tc[3]))
+            cur.execute("INSERT INTO gse_pt (pt1, pt2, pt3, pt4) VALUES (%s, %s, %s, %s);", (pt[3], pt[4], extra, pt[0]))
         conn.commit()
 
 if __name__ == '__main__':
+        print("GSE started")
         start_loading('postgres', 'postgres', 'postgres', '192.168.0.5', 'postgres')
 

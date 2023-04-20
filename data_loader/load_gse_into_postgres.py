@@ -23,7 +23,6 @@ def start_loading(dbname, password, user, ecu_ip, db_host):
                 tc = [float(t) for t in tc.split(',') if t != '']
                 sAll = [int(s) for s in sAll.split(',') if s != '']
                 pt = [float(p) for p in pt.split(',') if p != '']
-                extra = float(extra[0])
 
                 print("PT: ", pt)
         except KeyboardInterrupt as k:
@@ -32,7 +31,7 @@ def start_loading(dbname, password, user, ecu_ip, db_host):
         except Exception as e:
             click.secho(f"fucked {e}", fg='red')
         with conn.cursor() as cur:
-            cur.execute("INSERT INTO gse_pt (pt1, pt2, pt3, pt4) VALUES (%s, %s, %s, %s);", (pt[3], pt[4], extra, pt[0]))
+            cur.execute("INSERT INTO gse_pt (pt1, pt2, pt3, pt4) VALUES (%s, %s, %s, %s);", (pt[3], pt[4], pt[5] , pt[0]))
         conn.commit()
 
 if __name__ == '__main__':

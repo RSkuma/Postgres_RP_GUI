@@ -5,7 +5,7 @@ StartupCommands:
 
 1. install docker and docker compose
 2. ``git clone https://github.com/UCI-Rocket-Project/Postgres_RP_GUI.git``
-3. ``cd Prometheus_GUI/docker-compose``
+3. ``cd Postgres_RP_GUI``
 4. ``docker compose build``
 5. ``docker compose up``
 6. ``docker compose down # to shut down``
